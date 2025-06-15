@@ -50,3 +50,41 @@ function toggleMobileNav() {
     
   }
 }
+
+
+let dropdown = document.getElementById("dropdown");
+// dropdown.style.display = "none";
+
+function toggleDropdown() {
+  if (dropdown.style.display === "none") {
+    dropdown.style.display = "block";
+  } else {
+    dropdown.style.display = "none";
+  }
+    
+}
+
+
+
+function signup() {
+  let username = document.getElementById('name');
+  let useremail = document.getElementById('email');
+  let userpassword = document.getElementById('password');
+
+  let datapush = [];
+
+  let user = {
+    name: username.value,
+    email: useremail.value,
+    password: userpassword.value
+  };
+
+  datapush.push(user);
+  console.log(datapush);
+
+  
+ 
+
+
+}
+
