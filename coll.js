@@ -1,3 +1,5 @@
+// import addToCart from './app.js';
+
 let collectiondata = [
   {
     id: 1,
@@ -93,15 +95,24 @@ let collectiondata = [
 
 let collproductgrid = document.getElementById("collproductgrid");
 
+let count = 0;
+
 for (let i = 0; i < collectiondata.length; i++) {
   collproductgrid.innerHTML += `
     <div class="product-card">
       <img src="${collectiondata[i].imagecoll}" alt="img">
       <h3>${collectiondata[i].titlecoll}</h3>
       <p>Rs.${collectiondata[i].pricecoll } $</p>
-      <button class="add-cart-btn">Add to Cart</button>
+      <button onclick="addToCart(${collectiondata[i].id})" class="add-cart-btn">Add to Cart</button>
     </div>
   `;
+}
+
+
+function addToCart() {
+   count++;
+   console.log(count);
+   
 }
 
 

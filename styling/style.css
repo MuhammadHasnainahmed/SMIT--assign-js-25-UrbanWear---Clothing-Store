@@ -29,7 +29,7 @@ nav{
   position: relative;
 }
 
-nav .fa-solid{
+nav .mobileicone{
   display: none;
 }
 
@@ -44,6 +44,7 @@ nav .fa-solid{
   display: flex;
 align-items: center;
   gap: 30px;
+  position: relative;
 }
 
 .nav-links a {
@@ -69,6 +70,32 @@ align-items: center;
 .nav-links i:hover{
   background-color: #d81b60;
 }
+
+.cart-icon{
+  display: none;
+}
+
+#countnumber{
+  background-color: white;
+  color: #e91e63;
+  /* padding: 10px 15px; */
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  /* padding: 5px ; */
+  border-radius: 50%;
+  position: absolute;
+  top: -11px;
+  right: -13px;
+}
+
+#countnumber p{
+  /* margin-top: 5px; */
+  font-weight: 800;
+}
+
+
+
 
 
 .dropdown{
@@ -454,89 +481,21 @@ align-items: center;
 }
 
 
-
-
-.signup-wrapper {
-  display: flex;
-  min-height: 100vh;
-}
-
-.signup-container {
-  flex: 1;
-  background-color: #fff;
-  padding: 60px;
-  display: flex;
-  flex-direction: column;
-  /* background-color: #c2185b; */
-  width: 50%;
-  justify-content: center;
-}
-
-.signup-container h1 {
-  font-size: 32px;
-  margin-bottom: 30px;
-  color: #333;
-}
-
-.signup-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  /* background-color: #4A90E2; */
-}
-
-.signup-form label {
-  margin: 10px 0 5px;
-  color: #555;
-}
-
-.signup-form input {
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 16px;
-}
-
-.signup-form button {
-  margin-top: 20px;
-  padding: 12px;
-  background-color: #4A90E2;
+.logout-btn {
+  padding: 8px 16px;
+  background-color: #ff4d4d;
   color: white;
-  font-size: 16px;
   border: none;
-  border-radius: 8px;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background-color 0.3s ease;
 }
 
-.signup-form button:hover {
-  background-color: #357ABD;
-}
-
-.signup-image {
-  flex: 1;
-  background-color: #e0e0e0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.signup-image img {
-  width: 100%;
-  height: 100vh;
-  /* object-fit: cover; */
+.logout-btn:hover {
+  background-color: #e60000;
 }
 
 
-
-@media screen and (max-width: 768px) {
-  
-
-  .signup-image {
-    /* height: 300px; */
-    display: none;
-  }
-}
 
 
 
@@ -561,6 +520,10 @@ align-items: center;
     align-items: center;
   }
 
+  .navbar {
+    padding: 10px 20px;
+  }
+
   
 }
 
@@ -570,7 +533,7 @@ align-items: center;
     display: none;
   }
 
-  nav .fa-bars-staggered{
+  nav .mobileicone{
     display: block;
   }
 }

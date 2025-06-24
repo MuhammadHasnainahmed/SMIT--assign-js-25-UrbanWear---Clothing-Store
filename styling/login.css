@@ -1,0 +1,115 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background: #111;
+  color: white;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.login-box {
+  display: flex;
+  max-width: 900px;
+  width: 95%;
+  background: #1a1a1a;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+}
+
+.login-left {
+  flex: 1;
+  background: url('https://images.unsplash.com/photo-1521335629791-ce4aec67dd47') no-repeat center center/cover;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  color: white;
+}
+
+.login-left h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  color: #e91e63;
+}
+
+.login-left p {
+  font-size: 1.1rem;
+  opacity: 0.8;
+}
+
+.login-right {
+  flex: 1;
+  padding: 3rem;
+  background-color: #1f1f1f;
+}
+
+.login-right h2 {
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  color: #fff;
+}
+
+form input {
+  width: 100%;
+  padding: 0.9rem;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 6px;
+  background: #2d2d2d;
+  color: white;
+  font-size: 1rem;
+}
+
+form input:focus {
+  outline: 2px solid #4A90E2;
+}
+
+form button {
+  width: 100%;
+  padding: 1rem;
+  background-color: #4A90E2;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+form button:hover {
+  background-color: #357ABD;
+}
+
+.signup-text {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+.signup-text a {
+  color: #4A90E2;
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .login-box {
+    flex-direction: column;
+  }
+
+  /* .login-left {
+    display: none;
+  } */
+
+  .login-right {
+    padding: 2rem;
+  }
+}

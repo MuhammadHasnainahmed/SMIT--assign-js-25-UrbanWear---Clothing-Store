@@ -26,7 +26,14 @@ let Featureddata = [
   },
 ];
 
+
+let carticon = document.querySelector(".cart-icon");
+
+let countnumber = document.getElementById("countnumber");
 const grid = document.getElementById("product-grid");
+let count = 0;
+
+// let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 for (let i = 0; i < Featureddata.length; i++) {
   grid.innerHTML += `
@@ -34,57 +41,69 @@ for (let i = 0; i < Featureddata.length; i++) {
       <img src="${Featureddata[i].image}" alt="img">
       <h3>${Featureddata[i].title}</h3>
       <p>Rs.${Featureddata[i].price}$</p>
-      <button class="add-cart-btn">Add to Cart</button>
+      <button onclick="addToCart(${Featureddata[i].id})" class="add-cart-btn">Add to Cart</button>
     </div>
   `;
 }
 
 
+function addToCart() {
+  
+  // cart.push(Featureddata.id);
+
+  // localStorage.setItem("cart", JSON.stringify(cart));
+
+  carticon.style.display = "block";
+   count++;
+   countnumber.innerHTML = `<p>${count}</p>`;
+   
+}
+
+// export default addToCart;
+
 let mobilenav = document.getElementById("mobile-nav");
 
 function toggleMobileNav() {
-  if (mobilenav.style.display === "none") {
-    mobilenav.style.display = "block";
-  } else {
+  if (mobilenav.style.display === "block") {
     mobilenav.style.display = "none";
-    
+  } else {
+    mobilenav.style.display = "block";
   }
 }
-
 
 let dropdown = document.getElementById("dropdown");
-// dropdown.style.display = "none";
 
 function toggleDropdown() {
-  if (dropdown.style.display === "none") {
-    dropdown.style.display = "block";
-  } else {
+  if (dropdown.style.display === "block") {
     dropdown.style.display = "none";
+  } else {
+    dropdown.style.display = "block";
   }
-    
 }
 
-
-
-function signup() {
-  let username = document.getElementById('name');
-  let useremail = document.getElementById('email');
-  let userpassword = document.getElementById('password');
-
-  let datapush = [];
-
-  let user = {
-    name: username.value,
-    email: useremail.value,
-    password: userpassword.value
-  };
-
-  datapush.push(user);
-  console.log(datapush);
-
-  
- 
-
-
+function logOut() {
+  localStorage.removeItem("user");
+  window.location.href = "index.html";
 }
 
+window.onload = function () {
+  let userinfo = document.getElementById("dropdown");
+  let user = JSON.parse(localStorage.getItem("user")) || {};
+
+  let formattedName = user.name ? user.name[0].toUpperCase() + user.name.slice(1) : "";
+
+// console.log(user.name[0]);
+
+  function render() {
+    if (formattedName) {
+      userinfo.innerHTML = "";
+      const userName = `<p>${formattedName}</p>`;
+      const logOutButton = `<button class="logout-btn" onclick="logOut()">Logout</button>`;
+
+      userinfo.innerHTML += userName;
+      userinfo.innerHTML += logOutButton;
+    }
+  }
+
+  render();
+};
