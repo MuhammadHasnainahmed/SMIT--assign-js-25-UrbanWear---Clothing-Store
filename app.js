@@ -1,65 +1,104 @@
 let Featureddata = [
   {
-    id: 1,
+    id: 0,
     title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
     price: 109.95,
     image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
   },
   {
-    id: 2,
+    id: 1,
     title: "Mens Casual Premium Slim Fit T-Shirts",
     price: 22.3,
     image:
       "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
   },
   {
-    id: 3,
+    id: 2,
     title: "Mens Cotton Jacket",
     price: 55.99,
     image: "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
   },
   {
-    id: 4,
+    id: 3,
     title: "Mens Casual Slim Fit",
     price: 15.99,
     image: "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg",
   },
 ];
 
-
 let carticon = document.querySelector(".cart-icon");
 
 let countnumber = document.getElementById("countnumber");
 const grid = document.getElementById("product-grid");
-let count = 0;
 
-// let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let cartdata = JSON.parse(localStorage.getItem("cart")) || [];
+
+// ---------------------------------------------------------------------
 
 for (let i = 0; i < Featureddata.length; i++) {
   grid.innerHTML += `
     <div class="product-card">
       <img src="${Featureddata[i].image}" alt="img">
       <h3>${Featureddata[i].title}</h3>
-      <p>Rs.${Featureddata[i].price}$</p>
+      <p>Rs.${Featureddata[i].price}$</p> 
       <button onclick="addToCart(${Featureddata[i].id})" class="add-cart-btn">Add to Cart</button>
     </div>
   `;
 }
 
+// let count = JSON.parse(localStorage.getItem("clickCount")) || 0;
 
-function addToCart() {
+// ---------------------------------------------------------------------
+function addToCart(index) {
+  // console.log(Featureddata[index]);
+
+  // console.log("cartdata" , cartdata);
+
+ 
   
-  // cart.push(Featureddata.id);
 
-  // localStorage.setItem("cart", JSON.stringify(cart));
 
+  cartdata.push(Featureddata[index]);
+  
+
+  localStorage.setItem("cart", JSON.stringify(cartdata));
+
+  // count++;
+
+  // localStorage.setItem("clickCount", JSON.stringify(count));
   carticon.style.display = "block";
-   count++;
-   countnumber.innerHTML = `<p>${count}</p>`;
    
+  // if (cartdata.length > 0) {
+  //   carticon.style.display = "block";
+    
+  // }
+  countnumber.innerHTML = `<p>${cartdata.length}</p>`;
+  cartcountdisplay();
 }
 
-// export default addToCart;
+function cartcountdisplay() {
+  countnumber.innerHTML = "";
+  countnumber.innerHTML = `<p>${cartdata.length}</p>`;
+  carticon.style.display = "block";
+  // console.log("savecount", count);
+}
+cartcountdisplay();
+
+
+// -----------------------------------------------------
+carticon.addEventListener("click", function () {
+  let user = JSON.parse(localStorage.getItem("user"));
+
+  if (user) {
+    window.location.href = "card.html";
+  } else {
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Please sign up first!",
+    });
+  }
+});
 
 let mobilenav = document.getElementById("mobile-nav");
 
@@ -90,9 +129,9 @@ window.onload = function () {
   let userinfo = document.getElementById("dropdown");
   let user = JSON.parse(localStorage.getItem("user")) || {};
 
-  let formattedName = user.name ? user.name[0].toUpperCase() + user.name.slice(1) : "";
-
-// console.log(user.name[0]);
+  let formattedName = user.name
+    ? user.name[0].toUpperCase() + user.name.slice(1)
+    : "";
 
   function render() {
     if (formattedName) {
