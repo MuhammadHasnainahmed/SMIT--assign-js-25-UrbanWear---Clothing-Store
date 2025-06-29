@@ -4,6 +4,8 @@ let cartdata = JSON.parse(localStorage.getItem("cart")) || [];
 
 let totalPrice = document.getElementById("totalPrice");
 
+let totalamount  = document.getElementById("totalamount");
+
 
 let quantity =document.getElementById("quantity");
 
@@ -29,9 +31,7 @@ function cartdisplay() {
         </div>
         <div class="quantity">
           <button onclick="decrement(${[i]})">-</button>
-       
-        
-        <p id="quantity"></p>
+          <p id="quantity">${cartdata[i].quantity}</p>
           <button onclick="increment(${[i]})">+</button>
         </div>
     
@@ -58,17 +58,32 @@ cartdisplay();
 
 
 function totalpriceval() {
-       let total = 0;
+  let total = 0;
+
        for (let i = 0; i < cartdata.length; i++) {
 
-        // console.log(cartdata[i].price);
 
 
               total += cartdata[i].price;
 
 
+                
+              if (totalPrice) {
+                 
+                totalPrice.innerHTML = `${total.toFixed(2)}`;
+                // console.log(totalPrice);
+                
+              }
 
-              totalPrice.innerHTML = total.toFixed(2);
+
+              if (totalamount) {
+                totalamount.innerHTML = `Rs${total.toFixed(2)}`;
+                // console.log(totalamount);
+
+                
+              }
+
+
               
         
              
@@ -91,28 +106,81 @@ function removeItem(index) {
 
 function clearCart() {
     localStorage.removeItem("cart");
-    // cartItem.innerHTML = `<h2>Cart is empty</h2>`
     window.location.reload();
 
 
 }
 
 
-// function decrement(index) {
-    
-// }
+function increment(index) {
+
+ 
+ let quantity = cartdata[index].quantity += 1;
+     
+  localStorage.setItem("cart", JSON.stringify(cartdata)); 
+
+  quantity.innerHTML = `${quantity}`;
+  cartdisplay();                   
+  totalpriceval();                 
+}
 
 
-// function increment(index) {
-//      console.log("increment", index);
+function decrement(index) {
+    let quantity = cartdata[index].quantity -= 1;
+     
+  localStorage.setItem("cart", JSON.stringify(cartdata)); 
+
+  quantity.innerHTML = `${quantity}`;
+  cartdisplay();                   
+  totalpriceval();  
+}
+
+
+let checkoutwrapper = document.querySelector(".checkout-wrapper");
+
+
+
+  function checkout() {
       
+    if (cartdata.length === 0) {
+      checkoutwrapper.style.display= "none"
+      
+    }else{
+      checkoutwrapper.style.display= "block"
+    }
 
-//     //  console.log("cartdata[index]", cartdata[index].quantity += 1);
-     
+    //  checkoutwrapper.style.display= "block"
+}
 
-//      cartdata[index].quantity = (cartdata[index].quantity || 1) + 1;
-//      localStorage.setItem("cart", JSON.stringify(cartdata));
-//      cartdisplay();
-//      totalpriceval();
-     
-// }
+
+let close_icon = document.querySelector(".close-icon");
+
+
+close_icon.addEventListener('click',function(){
+  checkoutwrapper.style.display= "none"
+})
+
+
+// console.log(subtotal);
+
+let  subtotal = document.getElementById("subtotal");
+function delivery() {
+  
+  let deliveryvalue  = 100 ;
+  let totalText = totalamount.innerText.trim();
+  let totalamountva = parseFloat(totalText);
+   
+   
+   let taxva = 18;
+   let subtotalva = totalamountva + deliveryvalue +taxva;
+  //  console.log(subtotalva);
+   
+     subtotal.innerHTML = subtotalva
+}
+
+delivery()
+
+
+
+
+

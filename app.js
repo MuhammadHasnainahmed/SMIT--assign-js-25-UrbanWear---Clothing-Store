@@ -50,12 +50,6 @@ for (let i = 0; i < Featureddata.length; i++) {
 
 // ---------------------------------------------------------------------
 function addToCart(index) {
-  // console.log(Featureddata[index]);
-
-  // console.log("cartdata" , cartdata);
-
- 
-  
 
 
   cartdata.push(Featureddata[index]);
@@ -63,15 +57,10 @@ function addToCart(index) {
 
   localStorage.setItem("cart", JSON.stringify(cartdata));
 
-  // count++;
 
-  // localStorage.setItem("clickCount", JSON.stringify(count));
   carticon.style.display = "block";
-   
-  // if (cartdata.length > 0) {
-  //   carticon.style.display = "block";
-    
-  // }
+
+
   countnumber.innerHTML = `<p>${cartdata.length}</p>`;
   cartcountdisplay();
 }
@@ -80,7 +69,7 @@ function cartcountdisplay() {
   countnumber.innerHTML = "";
   countnumber.innerHTML = `<p>${cartdata.length}</p>`;
   carticon.style.display = "block";
-  // console.log("savecount", count);
+
 }
 cartcountdisplay();
 
